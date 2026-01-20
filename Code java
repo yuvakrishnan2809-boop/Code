@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class CompanySalesMerge {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter number of sales for Branch 1: ");
+        int n1 = scanner.nextInt();
+        int[] branch1 = new int[n1];
+        System.out.println("Enter sales data for Branch 1:");
+        for (int i = 0; i < n1; i++) {
+            branch1[i] = scanner.nextInt();
+        }
+        
+        System.out.print("Enter number of sales for Branch 2: ");
+        int n2 = scanner.nextInt();
+        int[] branch2 = new int[n2];
+        System.out.println("Enter sales data for Branch 2:");
+        for (int i = 0; i < n2; i++) {
+            branch2[i] = scanner.nextInt();
+        }
+        
+        // Merge both arrays
+        int[] combinedSales = new int[n1 + n2];
+        for (int i = 0; i < n1; i++) {
+            combinedSales[i] = branch1[i];
+        }
+        for (int i = 0; i < n2; i++) {
+            combinedSales[n1 + i] = branch2[i];
+        }
+        
+        System.out.print("Combined sales data: ");
+        for (int sale : combinedSales) {
+            System.out.print(sale + " ");
+        }
+        System.out.println();
+        
+        // Optional: Total sales
+        int total = 0;
+        for (int sale : combinedSales) {
+            total += sale;
+        }
+        System.out.println("Total sales: " + total);
+        
+        scanner.close();
+    }
+}
