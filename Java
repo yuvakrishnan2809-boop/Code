@@ -1,0 +1,48 @@
+import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class UserRegistrationForm {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== User Registration Form ===");
+        
+        // Collect user data
+        System.out.print("Enter full name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
+        
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        
+        System.out.print("Enter phone: ");
+        String phone = scanner.nextLine();
+        
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine();
+        
+        // Specify file path for saving
+        System.out.print("Enter file path to save data (e.g., user_data.txt): ");
+        String filePath = scanner.nextLine();
+        
+        // Save to file
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, true))) {
+            writer.println("=== New User Registration ===");
+            writer.println("Name: " + name);
+            writer.println("Email: " + email);
+            writer.println("Phone: " + phone);
+            writer.println("Address: " + address);
+            writer.println("Timestamp: " + java.time.LocalDateTime.now());
+            writer.println("-----------------------------");
+            System.out.println("Registration saved successfully to " + filePath + "!");
+        } catch (IOException e) {
+            System.out.println("Error saving file: " + e.getMessage());
+        }
+        
+        scanner.close();
+    }
+}
